@@ -40,6 +40,12 @@ public interface IViewController extends ZoomListener {
 
     void verticalConfigScroll(int i);
 
+    void verticalConfigAutoScroll();
+
+    boolean isAutoScrolling();
+
+    void stopAutoScrolling();
+
     void redrawView();
 
     void redrawView(ViewState viewState);

@@ -3,7 +3,7 @@ package org.ebookdroid.ui.viewer;
 import org.ebookdroid.CodecType;
 import org.ebookdroid.EBookDroidApp;
 import org.ebookdroid.common.settings.types.RotationType;
-import org.emdev.ui.actions.ActionMenuHelper;
+import org.ebookdroid.common.touch.TouchManagerView;
 import org.emdev.ui.uimanager.UIManagerAppCompat;
 import org.sufficientlysecure.viewer.R;
 import org.ebookdroid.common.bitmaps.BitmapManager;
@@ -334,6 +334,7 @@ public class ViewerActivityController extends AbstractActivityController<ViewerA
                 final IViewController newDc = bs.viewMode.create(this);
                 if (newDc != null) {
                     final IViewController oldDc = ctrl.getAndSet(newDc);
+                    oldDc.stopAutoScrolling();
                     getZoomModel().removeListener(oldDc);
                     getZoomModel().addListener(newDc);
                     return ctrl.get();
@@ -755,6 +756,10 @@ public class ViewerActivityController extends AbstractActivityController<ViewerA
             builder.setNegativeButton();
             builder.show();
             return;
+        }
+        if ((view instanceof TouchManagerView || view instanceof SearchControls)
+                && view.getVisibility() != View.VISIBLE) {
+            ctrl.get().stopAutoScrolling();
         }
         ViewEffects.toggleControls(view);
         if (view instanceof ManualCropView) {

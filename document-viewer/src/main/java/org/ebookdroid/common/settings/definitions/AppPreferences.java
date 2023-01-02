@@ -62,6 +62,9 @@ public interface AppPreferences {
     IntegerPreferenceDefinition SCROLL_HEIGHT = new IntegerPreferenceDefinition(pref_scrollheight_id,
             pref_scrollheight_defvalue, pref_scrollheight_minvalue, pref_scrollheight_maxvalue);
 
+    IntegerPreferenceDefinition AUTO_SCROLL_DELAY = new IntegerPreferenceDefinition(pref_autoscrolldelay_id,
+            pref_autoscrolldelay_defvalue, pref_autoscrolldelay_minvalue, pref_autoscrolldelay_maxvalue);
+
     BooleanPreferenceDefinition ANIMATE_SCROLLING = new BooleanPreferenceDefinition(pref_animate_scrolling_id,
             pref_animate_scrolling_defvalue);
 

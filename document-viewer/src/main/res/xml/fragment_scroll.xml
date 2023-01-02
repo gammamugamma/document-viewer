@@ -18,6 +18,14 @@
             android:summary="@string/pref_scroll_summary"
             android:title="@string/pref_scroll_title" />
 
+    <org.emdev.ui.preference.SeekBarPreference
+            android:defaultValue="@string/pref_autoscrolldelay_defvalue"
+            android:key="@string/pref_autoscrolldelay_id"
+            ebookdroid:minValue="@string/pref_autoscrolldelay_minvalue"
+            ebookdroid:maxValue="@string/pref_autoscrolldelay_maxvalue"
+            android:summary="@string/pref_autoscrolldelay_summary"
+            android:title="@string/pref_autoscrolldelay_title" />
+
     <CheckBoxPreference
             android:defaultValue="@string/pref_animate_scrolling_defvalue"
             android:key="@string/pref_animate_scrolling_id"

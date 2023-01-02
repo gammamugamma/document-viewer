@@ -84,6 +84,11 @@ public class ViewStub implements IView {
     }
 
     @Override
+    public boolean isActive() {
+        return false;
+    }
+
+    @Override
     public void onDestroy() {
     }
 

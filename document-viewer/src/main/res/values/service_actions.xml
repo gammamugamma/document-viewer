@@ -33,6 +33,7 @@
 
         <item>actions_verticalConfigScrollUp</item>
         <item>actions_verticalConfigScrollDown</item>
+        <item>actions_verticalConfigAutoScroll</item>
         <item>actions_leftTopCorner</item>
         <item>actions_rightTopCorner</item>
         <item>actions_leftBottomCorner</item>
@@ -75,6 +76,7 @@
 
         <item>@string/actions_verticalConfigScrollUp</item>
         <item>@string/actions_verticalConfigScrollDown</item>
+        <item>@string/actions_verticalConfigAutoScroll</item>
         <item>@string/actions_leftTopCorner</item>
         <item>@string/actions_rightTopCorner</item>
         <item>@string/actions_leftBottomCorner</item>

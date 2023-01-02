@@ -70,6 +70,34 @@ public class HScrollController extends AbstractScrollController {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.ebookdroid.ui.viewer.IViewController#verticalConfigAutoScroll()
+     */
+    @Override
+    public final void verticalConfigAutoScroll() {
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.ebookdroid.ui.viewer.IViewController#isAutoScrolling()
+     */
+    @Override
+    public final boolean isAutoScrolling() {
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.ebookdroid.ui.viewer.IViewController#stopAutoScrolling()
+     */
+    @Override
+    public final void stopAutoScrolling() {
+    }
+
     private boolean isRightToLeft() {
         final BookSettings bs = base.getBookSettings();
         return bs.rtl;

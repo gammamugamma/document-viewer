@@ -10,7 +10,13 @@ import org.ebookdroid.ui.viewer.IActivityController;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class VScrollController extends AbstractScrollController {
+
+    private AtomicBoolean autoScrolling = new AtomicBoolean(false);
+
+    private Thread autoScrollThread;
 
     public VScrollController(final IActivityController base) {
         super(base, DocumentViewMode.VERTICALL_SCROLL);
@@ -61,6 +67,78 @@ public class VScrollController extends AbstractScrollController {
             getView().startPageScroll(0, dy);
         } else {
             getView().scrollBy(0, dy);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.ebookdroid.ui.viewer.IViewController#verticalConfigAutoScroll()
+     */
+    @Override
+    public final void verticalConfigAutoScroll() {
+        final AppSettings app = AppSettings.current();
+        final int dy = (int) (getHeight() * (app.scrollHeight / 100.0));
+
+        if (autoScrollThread != null) {
+            autoScrollThread.interrupt();
+        }
+        if (autoScrolling.get()) {
+            autoScrolling.set(false);
+            getView().redrawView();
+        } else {
+            autoScrolling.set(true);
+            getView().redrawView();
+            autoScrollThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (!Thread.currentThread().isInterrupted()) {
+                        try {
+                            Thread.sleep(1000 * app.autoScrollDelay);
+                        } catch(InterruptedException ex) {
+                            Thread.currentThread().interrupt();
+                            break;
+                        }
+                        if (!getView().isActive()) {
+                            autoScrolling.set(false);
+                            getView().redrawView();
+                            break;
+                        }
+                        if (getView().getView().hasWindowFocus()) {
+                            if (app.animateScrolling) {
+                                getView().startPageScroll(0, dy);
+                            } else {
+                                getView().scrollBy(0, dy);
+                            }
+                        }
+                    }
+                }
+            });
+            autoScrollThread.start();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.ebookdroid.ui.viewer.IViewController#isAutoScrolling()
+     */
+    @Override
+    public final boolean isAutoScrolling() {
+        return autoScrolling.get();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.ebookdroid.ui.viewer.IViewController#stopAutoScrolling()
+     */
+    @Override
+    public final void stopAutoScrolling() {
+        if (autoScrollThread != null) {
+            autoScrollThread.interrupt();
+            autoScrolling.set(false);
+            getView().redrawView();
         }
     }
 

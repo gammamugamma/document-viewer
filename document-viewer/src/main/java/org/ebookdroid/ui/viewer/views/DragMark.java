@@ -18,7 +18,9 @@ public enum DragMark {
 
     DRAG(R.drawable.components_curler_drag, false),
 
-    CURLER(R.drawable.components_curler_arrows, true);
+    CURLER(R.drawable.components_curler_arrows, true),
+
+    AUTOSCROLL(R.drawable.components_curler_auto_scroll, true);
 
     private static final Paint PAINT = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
 

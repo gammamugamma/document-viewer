@@ -9,6 +9,11 @@
     <string translatable="false" name="pref_scrollheight_minvalue">0</string>
     <string translatable="false" name="pref_scrollheight_maxvalue">100</string>
 
+    <string translatable="false" name="pref_autoscrolldelay_id">scrolldelay</string>
+    <string translatable="false" name="pref_autoscrolldelay_defvalue">30</string>
+    <string translatable="false" name="pref_autoscrolldelay_minvalue">1</string>
+    <string translatable="false" name="pref_autoscrolldelay_maxvalue">600</string>
+
     <string translatable="false" name="pref_animate_scrolling_id">animate_scrolling</string>
     <string translatable="false" name="pref_animate_scrolling_defvalue">true</string>
 

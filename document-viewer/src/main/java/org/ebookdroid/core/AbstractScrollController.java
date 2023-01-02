@@ -53,7 +53,9 @@ public abstract class AbstractScrollController extends AbstractViewController {
             pages.release();
         }
 
-        if (eventDraw.viewState.app.showAnimIcon) {
+        if (isAutoScrolling()) {
+            DragMark.AUTOSCROLL.draw(eventDraw.canvas, viewState);
+        } else if (eventDraw.viewState.app.showAnimIcon) {
             DragMark.DRAG.draw(eventDraw.canvas, viewState);
         }
         getView().continueScroll();

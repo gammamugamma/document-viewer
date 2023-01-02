@@ -149,6 +149,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
     @Override
     protected void onResumeImpl() {
         IUIManager.instance.onResume(this);
+        ((GLView) view).setActive(true);
     }
 
     /**
@@ -158,6 +159,7 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
      */
     @Override
     protected void onPauseImpl(final boolean finishing) {
+        ((GLView) view).setActive(false);
         IUIManager.instance.onPause(this);
     }
 

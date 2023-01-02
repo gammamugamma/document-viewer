@@ -10,6 +10,9 @@
     <string name="pref_scroll_title">Scroll height</string>
     <string name="pref_scroll_summary">Set scrolling height for pages that do not fit the screen (default: 50%%)</string>
 
+    <string name="pref_autoscrolldelay_title">Automatic scroll delay</string>
+    <string name="pref_autoscrolldelay_summary">Set delay for automatic scrolling (in seconds)</string>
+
     <string name="pref_touchdelay_title">Touch processing delay</string>
     <string name="pref_touchdelay_summary">Touch processing delay (in milliseconds)</string>
 

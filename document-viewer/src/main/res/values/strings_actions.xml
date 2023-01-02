@@ -3,6 +3,7 @@
 
     <string name="actions_verticalConfigScrollUp">Scroll Back</string>
     <string name="actions_verticalConfigScrollDown">Scroll Forward</string>
+    <string name="actions_verticalConfigAutoScroll">Automatic Scroll</string>
     <string name="actions_quickZoom">Quick zoom</string>
     <string name="actions_zoomToColumn">Zoom to column</string>
     <string name="actions_leftTopCorner">Scroll to left top page corner</string>

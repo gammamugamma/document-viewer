@@ -54,6 +54,8 @@ public interface IView {
     @WorkerThread
     void waitForInitialization();
 
+    boolean isActive();
+
     void onDestroy();
 
     float getScrollScaleRatio();

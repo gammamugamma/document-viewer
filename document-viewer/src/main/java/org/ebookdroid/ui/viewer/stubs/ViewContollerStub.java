@@ -57,6 +57,19 @@ public class ViewContollerStub implements IViewController {
     }
 
     @Override
+    public void verticalConfigAutoScroll() {
+    }
+
+    @Override
+    public final boolean isAutoScrolling() {
+        return false;
+    }
+
+    @Override
+    public final void stopAutoScrolling() {
+    }
+
+    @Override
     public void redrawView() {
     }
 

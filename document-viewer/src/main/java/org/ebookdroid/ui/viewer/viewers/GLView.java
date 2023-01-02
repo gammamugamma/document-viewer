@@ -37,6 +37,8 @@ public final class GLView extends GLRootView implements IView, SurfaceHolder.Cal
 
     protected boolean layoutLocked;
 
+    private boolean active = false;
+
     protected final AtomicReference<Rect> layout = new AtomicReference<Rect>();
 
     protected final Flag layoutFlag = new Flag();
@@ -315,12 +317,26 @@ public final class GLView extends GLRootView implements IView, SurfaceHolder.Cal
     /**
      * {@inheritDoc}
      *
+     * @see org.ebookdroid.ui.viewer.IView#isActive()
+     */
+    @Override
+    public boolean isActive() {
+        return active;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
      * @see org.ebookdroid.ui.viewer.IView#onDestroy()
      */
     @Override
     public void onDestroy() {
         layoutFlag.set();
         scrollThread.finish();
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     /**

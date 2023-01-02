@@ -59,6 +59,8 @@ public class AppSettings implements AppPreferences, BookPreferences, IBackupAgen
 
     public final int scrollHeight;
 
+    public final int autoScrollDelay;
+
     public final boolean animateScrolling;
 
     public final boolean volumeKeyScrolling;
@@ -175,6 +177,7 @@ public class AppSettings implements AppPreferences, BookPreferences, IBackupAgen
         /* =============== Tap & Scroll settings =============== */
         tapsEnabled = TAPS_ENABLED.getPreferenceValue(prefs);
         scrollHeight = SCROLL_HEIGHT.getPreferenceValue(prefs);
+        autoScrollDelay = AUTO_SCROLL_DELAY.getPreferenceValue(prefs);
         animateScrolling = ANIMATE_SCROLLING.getPreferenceValue(prefs);
         volumeKeyScrolling = VOLUME_KEY_SCROLLING.getPreferenceValue(prefs);
         tapTogglesFullscreen = TAP_TOGGLES_FULLSCREEN.getPreferenceValue(prefs);
@@ -443,6 +446,7 @@ public class AppSettings implements AppPreferences, BookPreferences, IBackupAgen
         private static final int D_AllowedFileTypes = 0x0001 << 15;
         private static final int D_TapConfigChanged = 0x0001 << 16;
         private static final int D_KeyBindingChanged = 0x0001 << 17;
+        private static final int D_AutoScrollDelay = 0x0001 << 18;
 
         private int mask;
         private final boolean firstTime;
@@ -472,6 +476,9 @@ public class AppSettings implements AppPreferences, BookPreferences, IBackupAgen
                 }
                 if (olds.scrollHeight != news.scrollHeight) {
                     mask |= D_ScrollHeight;
+                }
+                if (olds.autoScrollDelay != news.autoScrollDelay) {
+                    mask |= D_AutoScrollDelay;
                 }
                 if (olds.pagesInMemory != news.pagesInMemory) {
                     mask |= D_PagesInMemory;
@@ -530,6 +537,10 @@ public class AppSettings implements AppPreferences, BookPreferences, IBackupAgen
 
         public boolean isScrollHeightChanged() {
             return 0 != (mask & D_ScrollHeight);
+        }
+
+        public boolean isAutoScrollDelayChanged() {
+            return 0 != (mask & D_AutoScrollDelay);
         }
 
         public boolean isPagesInMemoryChanged() {
