@@ -17,14 +17,21 @@ jobs:
     - run: ./init.sh
     - run: ndk-build -C document-viewer
     - run: |
-        keytool -genkey -v -keystore ~/keystore -storepass password -keypass password -alias alias -keyalg RSA -validity 100000 -dname "CN=Android"
+        echo "$SIGNING_KEYSTORE" | base64 -d > ~/keystore
         mkdir -p ~/.gradle/
         echo "signingStoreLocation=/home/runner/keystore" > ~/.gradle/gradle.properties
         echo "signingStorePassword=password" >> ~/.gradle/gradle.properties
         echo "signingKeyAlias=alias" >> ~/.gradle/gradle.properties
         echo "signingKeyPassword=password" >> ~/.gradle/gradle.properties
+      env:
+        SIGNING_KEYSTORE: ${{ secrets.KEYSTORE }}
     - run: ./gradlew build
     - uses: actions/upload-artifact@v3
       with:
         name: release
         path: document-viewer/build/outputs/apk/release
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        files: document-viewer/build/outputs/apk/release/*.apk
